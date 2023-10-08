@@ -1,16 +1,15 @@
-# Use postgres/example user/password credentials
-version: '3.1'
+version: '3.7'
 
 services:
 
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: 9mREsvXDs9Gk89Ef
-
-  adminer:
-    image: adminer
-    restart: always
+  mysql:
+    image: mysql:8.0.18
     ports:
-      - 3000:3306
+      - '3306:3306'
+    volumes:
+          - ./data:/var/lib/mysql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: 9mREsvXDs9Gk89Ef
